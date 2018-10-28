@@ -1,5 +1,5 @@
 
-//  AWSController.swift
+//  PKAWSHelper.swift
 //
 //  Created by Pramod Kumar on 26/07/17.
 //  Copyright © 2017 Pramod Kumar. All rights reserved.
@@ -160,87 +160,5 @@ class PKAWSHelper {
                 }
             }
         }
-        
     }
-    
-    
-//    func uploadTOS3Video(url: URL,
-//                                uploadFolderName: String = "",
-//                                fileName: String,
-//                                success : @escaping (Bool, String) -> Void,
-//                                progress : @escaping (CGFloat) -> Void,
-//                                failure : @escaping (Error) -> Void) {
-//
-//        let name = "\(fileName).mp4"
-//        let path = NSTemporaryDirectory().stringByAppendingPathComponent(path: name)
-//
-//        let dispatchgroup = DispatchGroup()
-//
-//        dispatchgroup.enter()
-//
-//        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
-//        let outputurl = documentsURL.appendingPathComponent(name)
-//        var ur = outputurl
-//        self.convertVideo(toMPEG4FormatForVideo: url as URL, outputURL: outputurl) { (session) in
-//
-//            ur = session.outputURL!
-//            dispatchgroup.leave()
-//
-//        }
-//        dispatchgroup.wait()
-//
-//        let data = NSData(contentsOf: ur as URL)
-//
-//        do {
-//
-//            try data?.write(to: URL(fileURLWithPath: path), options: .atomic)
-//
-//        } catch {
-//
-//            print(error)
-//        }
-//
-//        DispatchQueue.main.async {
-//
-//            let nurl = NSURL(fileURLWithPath: path)
-//
-//            guard let uploadRequest = AWSS3TransferManagerUploadRequest() else {
-//
-//                let err = NSError(domain: "There is a problem while making the uploading request.", code : 02, userInfo : nil)
-//                failure(err)
-//                return
-//            }
-//
-//            uploadRequest.bucket = "\(BUCKET_NAME)/\(BUCKET_DIRECTORY)\(uploadFolderName.isEmpty ? "" : "/\(uploadFolderName)")"
-//            uploadRequest.acl    = AWSS3ObjectCannedACL.publicRead
-//            uploadRequest.key    = name
-//            uploadRequest.body   = nurl as URL!
-//            uploadRequest.body  = URL(fileURLWithPath: path)
-//
-//
-//            uploadRequest.uploadProgress = {(
-//                bytesSent : Int64,
-//                totalBytesSent : Int64,
-//                _ totalBytesExpectedToSend : Int64) -> Void in
-//
-//                progress((CGFloat(totalBytesSent)/CGFloat(totalBytesExpectedToSend)))
-//                //            print((CGFloat(totalBytesSent)/CGFloat(totalBytesExpectedToSend)))
-//            }
-//
-//            AWSS3TransferManager.default().upload(uploadRequest).continueWith(executor: AWSExecutor.mainThread()) { (task) -> Void in
-//
-//                //MARK: That will remove image from temporary storage (NSTemporaryDirectory())...
-//                try? FileManager.default.removeItem(atPath : path)
-//                if let err = task.error {
-//
-//                    failure(err)
-//                } else {
-//
-//                    let url = "https://s3.amazonaws.com/\(BUCKET_NAME)/\(BUCKET_DIRECTORY)\(uploadFolderName.isEmpty ? "" : "/\(uploadFolderName)")/\(name)"
-//
-//                    success(true, url)
-//                }
-//            }
-//        }
-//    }
 }
